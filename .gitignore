@@ -1,0 +1,8 @@
+# ignore any .DS_Store file
+.DS_Store
+
+# ignore any Jupyter Notebook checkpoint file
+*checkpoint.ipynb
+
+# ignore Visual Studio Code hidden directory
+.vscode/
