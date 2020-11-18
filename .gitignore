@@ -6,3 +6,6 @@
 
 # ignore Visual Studio Code hidden directory
 .vscode/
+
+# ignore Rhistory
+.Rhistory
