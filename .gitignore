@@ -1,11 +1,44 @@
-# ignore any .DS_Store file
-.DS_Store
+# Logs and databases #
+######################
+*.log
+*.sql
+*.sqlite
 
-# ignore any Jupyter Notebook checkpoint file
+
+# OS generated files #
+######################
+.DS_Store?
+ehthumbs.db
+Icon?
+Thumbs.db
+*.DS_Store
+
+
+#        Xcode       #
+######################
+*.pbxuser
+*.mode1v3
+*.mode2v3
+*.perspectivev3
+*.xcuserstate
+project.xcworkspace/
+xcuserdata/
+ 
+
+#         IDE        #
+######################
+*.idea
+*.iml
+*.ipynb_checkpoints
+*.Rhistory
+.vscode/
+*checkpoint.dot
 *checkpoint.ipynb
 
-# ignore Visual Studio Code hidden directory
-.vscode/
 
-# ignore Rhistory
-.Rhistory
+#   Generated files  #
+######################
+/web-app/WEB-INF
+build/
+*.[oa]
+*.pyc
