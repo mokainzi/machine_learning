@@ -1,0 +1,64 @@
+title: "Machine Learning Predicting Diamond Cut Using Random Forest Model"
+author: "Dan Oostra for SDA/Coding DOjo"
+date: "November 23, 2020"
+
+---
+```{r}
+library(neuralnet)
+library(caret)
+library(tidyverse)
+```
+```{r}
+?diamonds
+head(diamonds)
+```
+```{r}
+df <- diamonds %>%
+  filter(cut %in% c('Ideal', 'Good'))
+head(df)
+```
+```{r}
+df <- sample_n(df, 5000)
+dim(df)
+```
+```{r}
+df$binary = ifelse(df$cut=='Ideal', 1, 0)
+head(df)
+```
+```{r}
+df$binary <- as.factor(df$binary)
+names(df)
+```
+```{r}
+df <- df[,-2]
+head(df)
+```
+```{r}
+rows <- createDataPartition(df$binary, p=.7, list = F, times = 1)
+head(rows)
+
+train <- df[rows, ]
+test <- df[-rows, ]
+
+dim(train)
+dim(test)
+```
+```{r}
+control <- trainControl(method = 'repeatedcv', number = 2, repeats = 2)
+
+# build model
+model <- train(binary ~ .,             # binary dependent on all other features
+               data=train, 
+               method = 'ranger',      # ranger method is Random Forest
+               trControl = control)
+```
+
+```{r}
+pred <- predict(model, test)
+head(pred)
+```
+
+```{r}
+confusionMatrix(pred, test$binary)
+```
+
